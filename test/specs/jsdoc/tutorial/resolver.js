@@ -208,6 +208,16 @@ describe('jsdoc/tutorial/resolver', function() {
             expect(test.title).toBe('Test tutorial');
         });
 
+        it('tutorials without configuration files have no autoindex', function() {
+            // test6.xml didn't have metadata
+            expect(test6.autoindex).toBe(undefined);
+        });
+
+        it('tutorials with configuration files have an autoindex attribute with config order', function() {
+            // test2, test3 were described in that order in multiple.json
+            expect(test2.autoindex).toBeLessThan(test3.autoindex);
+        });
+
         it('multiple tutorials can appear in a configuration file', function() {
             expect(test2.title).toBe('Test 2');
             expect(test3.title).toBe('Test 3');
